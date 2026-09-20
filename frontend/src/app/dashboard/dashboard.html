@@ -1,0 +1,75 @@
+<div class="app-shell">
+  <header class="topbar">
+    <div class="brando">PruebaOsa</div>
+    <div class="usuario">
+      @if (usuario(); as u) {
+        <span>{{ u.nombre }} · {{ u.rol }}</span>
+      }
+      <button (click)="cerrarSesion()">Salir</button>
+    </div>
+  </header>
+
+  <main class="contenido">
+    @if (cargando()) {
+      <p class="estado">Cargando resumen…</p>
+    } @else if (error()) {
+      <div class="alerta">
+        {{ error() }}
+        <button (click)="cargar()">Reintentar</button>
+      </div>
+    } @else if (resumen(); as r) {
+      <section class="kpis">
+        <div class="kpi">
+          <span class="kpi-label">Cartera pendiente</span>
+          <span class="kpi-valor">{{ formatoCOP(r.total_cartera) }}</span>
+        </div>
+        <div class="kpi">
+          <span class="kpi-label">Facturas por gestionar</span>
+          <span class="kpi-valor">{{ r.cantidad_facturas }}</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Proyección de recaudo según histórico de pago</h2>
+        <div class="proyeccion">
+          @for (clave of ['30', '60', '90', 'mas_90']; track clave) {
+            <div class="barra">
+              <span class="barra-etiqueta">{{ etiquetaProyeccion(clave) }}</span>
+              <span class="barra-valor">{{ formatoCOP(r.proyeccion_recaudo[clave]) }}</span>
+            </div>
+          }
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Clientes prioritarios para gestión diaria</h2>
+        <div class="tabla-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Prioridad</th>
+                <th>Cliente</th>
+                <th>Factura</th>
+                <th>Días de mora</th>
+                <th>Promedio histórico</th>
+                <th>Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (c of r.clientes_prioritarios; track c.factura; let i = $index) {
+                <tr>
+                  <td><span class="rango">{{ i + 1 }}</span></td>
+                  <td>{{ c.cliente }}</td>
+                  <td>{{ c.factura }}</td>
+                  <td>{{ c.dias_mora }}</td>
+                  <td>{{ c.promedio_historico }} días</td>
+                  <td>{{ formatoCOP(c.valor) }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </section>
+    }
+  </main>
+</div>

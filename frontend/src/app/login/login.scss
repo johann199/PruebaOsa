@@ -1,0 +1,93 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  background: linear-gradient(160deg, #0f2b46 0%, #14385e 55%, #1d4f8a 100%);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  margin: 1rem;
+  padding: 2.5rem 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+
+  h1 {
+    margin: 0;
+    font-size: 1.7rem;
+    color: #14385e;
+    text-align: center;
+  }
+
+  .subtitulo {
+    margin: 0.5rem 0 1.5rem;
+    color: #5b6b7c;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  label {
+    display: block;
+    margin: 0.9rem 0 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2b3a48;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid #c6d0d9;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+
+    &:focus {
+      outline: 2px solid #1d4f8a;
+      border-color: transparent;
+    }
+  }
+
+  button {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    border: 0;
+    border-radius: 8px;
+    background: #1d4f8a;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: #163d69;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  .alerta {
+    padding: 0.7rem 0.9rem;
+    background: #fdecea;
+    color: #b3261e;
+    border: 1px solid #f5c6c2;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .pista {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #8a99a8;
+  }
+}

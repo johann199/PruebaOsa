@@ -1,0 +1,38 @@
+<section class="login">
+  <div class="login-card">
+    <h1>PruebaOsa</h1>
+    <p class="subtitulo">Automatización de recaudo y proyección de cartera</p>
+
+    @if (error) {
+      <div class="alerta">{{ error }}</div>
+    }
+
+    <form (ngSubmit)="entrar()">
+      <label for="correo">Correo</label>
+      <input
+        id="correo"
+        type="email"
+        name="correo"
+        [(ngModel)]="correo"
+        required
+        autocomplete="username"
+      />
+
+      <label for="password">Contraseña</label>
+      <input
+        id="password"
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        required
+        autocomplete="current-password"
+      />
+
+      <button type="submit" [disabled]="cargando">
+        {{ cargando ? 'Ingresando…' : 'Ingresar' }}
+      </button>
+    </form>
+
+    <p class="pista">Analista: analista@pruebaosa.com / admin123</p>
+  </div>
+</section>

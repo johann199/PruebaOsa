@@ -1,0 +1,68 @@
+<section class="portada">
+  <div class="tarjeta">
+    @if (!estadoCuenta()) {
+      <h1>Estado de cuenta</h1>
+      <p class="subtitulo">
+        Para ver tu estado de cuenta en tiempo real, confirma tu NIT por seguridad.
+      </p>
+
+      @if (error()) {
+        <div class="alerta">{{ error() }}</div>
+      }
+
+      <label for="nit">NIT</label>
+      <input
+        id="nit"
+        type="text"
+        name="nit"
+        [(ngModel)]="nit"
+        placeholder="Ej. 900123456"
+      />
+
+      <button (click)="consultar()" [disabled]="cargando() || !nit()">
+        {{ cargando() ? 'Consultando…' : 'Ver mi estado de cuenta' }}
+      </button>
+    } @else if (estadoCuenta(); as ec) {
+      <div class="encabezado">
+        <div>
+          <h2>{{ ec.cliente }}</h2>
+          <p>NIT {{ ec.nit }} · Saldo pendiente: <strong>{{ formatoCOP(ec.total_pendiente) }}</strong></p>
+        </div>
+        <button class="volver" (click)="volver()">Ingresar otro NIT</button>
+      </div>
+
+      <div class="tabla-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Factura</th>
+              <th>Vencimiento</th>
+              <th>Días de mora</th>
+              <th>Valor</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (f of ec.facturas; track f.numero_factura) {
+              <tr>
+                <td>{{ f.numero_factura }}</td>
+                <td>{{ f.fecha_vencimiento | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ f.dias_mora }}</td>
+                <td>{{ formatoCOP(f.valor) }}</td>
+                <td>
+                  <span class="estado-badge" [class.vencida]="f.estado === 'Vencida'" [class.pagada]="f.estado === 'Pagada'">
+                    {{ f.estado }}
+                  </span>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="5" class="sin-datos">No tienes facturas registradas.</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </div>
+</section>

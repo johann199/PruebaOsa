@@ -1,0 +1,169 @@
+.portada {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  padding: 2rem 1rem;
+  background: linear-gradient(160deg, #0f2b46 0%, #14385e 55%, #1d4f8a 100%);
+}
+
+.tarjeta {
+  width: 100%;
+  max-width: 760px;
+  padding: 2.5rem 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+
+  h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    color: #14385e;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #14385e;
+  }
+
+  .subtitulo {
+    margin: 0.5rem 0 1.5rem;
+    color: #5b6b7c;
+    font-size: 0.95rem;
+  }
+
+  label {
+    display: block;
+    margin: 0.9rem 0 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2b3a48;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid #c6d0d9;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+
+    &:focus {
+      outline: 2px solid #1d4f8a;
+      border-color: transparent;
+    }
+  }
+
+  button {
+    margin-top: 1.2rem;
+    padding: 0.75rem 1.25rem;
+    border: 0;
+    border-radius: 8px;
+    background: #1d4f8a;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: #163d69;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &.volver {
+      margin-top: 0;
+      background: #f2f5f8;
+      color: #14385e;
+      font-weight: 500;
+
+      &:hover {
+        background: #e3e9ef;
+      }
+    }
+  }
+
+  .alerta {
+    padding: 0.7rem 0.9rem;
+    background: #fdecea;
+    color: #b3261e;
+    border: 1px solid #f5c6c2;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .encabezado {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    p {
+      margin: 0.3rem 0 0;
+      color: #5b6b7c;
+      font-size: 0.9rem;
+    }
+
+    strong {
+      color: #14385e;
+    }
+  }
+
+  .tabla-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th {
+      text-align: left;
+      padding: 0.6rem 0.8rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03rem;
+      color: #5b6b7c;
+      border-bottom: 2px solid #e3e9ef;
+    }
+
+    td {
+      padding: 0.7rem 0.8rem;
+      border-bottom: 1px solid #eef1f4;
+      font-size: 0.92rem;
+    }
+
+    .sin-datos {
+      text-align: center;
+      color: #8a99a8;
+      padding: 1.5rem;
+    }
+  }
+}
+
+.estado-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #fff4e0;
+  color: #a16600;
+
+  &.vencida {
+    background: #fdecea;
+    color: #b3261e;
+  }
+
+  &.pagada {
+    background: #e5f6ec;
+    color: #137333;
+  }
+}
