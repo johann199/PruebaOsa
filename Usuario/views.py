@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from ninja import NinjaAPI
+from ninja import Router
 from .models import Usuario
 from typing import List
 from .schema import UsuarioIn, UsuarioOut
 
 
-usuario = NinjaAPI()
+usuario = Router()
 
 @usuario.post("/usuario")
 def crearUsuario(request, payload:UsuarioIn):
@@ -18,12 +18,12 @@ def consultarUsuarios(request):
     return qs
 
 @usuario.put("/usuarios/{usuario_id}")
-def actualizarUsuario(request, usuario_id: id, payload:UsuarioIn):
+def actualizarUsuario(request, usuario_id: int, payload:UsuarioIn):
     usuario = get_object_or_404(Usuario, id=usuario_id)
     for attr, value in payload.dic().items():
         setattr(usuario, attr, value)
     usuario.save()
-    return {"souccess": True}
+    return {"success": True}
 
 @usuario.delete("/usuario/{usuario_id}")
 def eliminarUsuario(request, usuario_id: int):

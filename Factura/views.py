@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404
-from ninja import NinjaAPI
+from ninja import Router
 from .models import Factura
 from typing import List
-from .schema import FacturaIn, FacturaOut
+from .schemas import FacturaIn, FacturaOut
 
 
-factura = NinjaAPI()
+factura = Router()
 
 @factura.post("/factura")
 def crearcliente(request, payload:FacturaIn):
@@ -18,12 +18,12 @@ def consultarclientes(request):
     return qs
 
 @factura.put("/factura/{factura_id}")
-def actualizarcliente(request, factura_id: id, payload:clienteIn):
+def actualizarcliente(request, factura_id: int, payload:FacturaIn):
     factura = get_object_or_404(Factura, id=factura_id)
     for attr, value in payload.dic().items():
         setattr(factura, attr, value)
     factura.save()
-    return {"souccess": True}
+    return {"success": True}
 
 @factura.delete("/factura/{factura_id}")
 def eliminarcliente(request, factura_id: int):

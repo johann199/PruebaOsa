@@ -22,4 +22,5 @@ class ClienteOut(Schema):
     creado: date = None
     modificado: date = None
     
-    
+class VerificarNitIn(Schema):
+    nit: str 
